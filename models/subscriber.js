@@ -1,64 +1,121 @@
 const mongoose = require('mongoose');
 
-// Schema cho từng lĩnh vực đào tạo
-const linhVucSchema = new mongoose.Schema({
-  LinhVuc: { type: String, required: true },
-  MoTa: { type: String, required: true }
+// Schema cho hình ảnh
+const imageSchema = new mongoose.Schema({
+  url: { type: String } // Không bắt buộc
 });
 
-// Schema cho Ban Chủ Nhiệm
-const banChuNhiemSchema = new mongoose.Schema({
-    ChuNhiem: { type: String },  // Loại bỏ 'required: true' nếu không bắt buộc
-    NhiemKi: { type: String, required: true }
-});
-// Schema cho Team Dự Án
-const teamDuAnSchema = new mongoose.Schema({
-  Team: { type: String, required: true },
-  MoTa: { type: String, required: true }
+// Schema cho các cố vấn
+const advisorSchema = new mongoose.Schema({
+  name: { type: String }, // Không bắt buộc
+  position: { type: String }, // Không bắt buộc
+  imgSrc: { type: String } // Không bắt buộc
 });
 
-// Schema cho các câu hỏi Q&A
-const qaSchema = new mongoose.Schema({
-  H: { type: String, required: true },  // Câu hỏi
-  TL: { type: String, required: true }  // Trả lời
+// Schema cho ban điều hành
+const managementBoardSchema = new mongoose.Schema({
+  name: { type: String }, // Không bắt buộc
+  role: { type: String }, // Không bắt buộc
+  term: { type: String }, // Không bắt buộc
+  imgSrc: { type: String }, // Không bắt buộc
+  status: { type: String }, // Không bắt buộc
+  isButtonDisabled: { type: Boolean }, // Không bắt buộc
+  link: { type: String } // Không bắt buộc
 });
 
-// Schema cho từng khóa đào tạo chi tiết
-const khoaSchema = new mongoose.Schema({
-  khoa: { type: String, required: true },
-  moTa: { type: [String], required: true }
+// Schema cho team dự án
+const teamProjectSchema = new mongoose.Schema({
+  title: { type: String }, // Không bắt buộc
+  image: { type: String } // Không bắt buộc
+});
+
+// Schema cho FAQ
+const faqSchema = new mongoose.Schema({
+  question: { type: String }, // Không bắt buộc
+  answer: { type: String } // Không bắt buộc
+});
+
+// Schema cho các chương trình đào tạo
+const programSchema = new mongoose.Schema({
+  title: { type: String }, // Không bắt buộc
+  image: { type: String }, // Không bắt buộc
+  description: { type: [String] } // Không bắt buộc
+});
+
+// Schema cho hoạt động
+const activitySchema = new mongoose.Schema({
+  title: { type: String }, // Không bắt buộc
+  description: { type: String }, // Không bắt buộc
+  image: { type: String } // Không bắt buộc
 });
 
 // Schema chính cho IUC Club
 const iucClubSchema = new mongoose.Schema({
-  TrangChu: { type: String, required: true },
+  TrangChu: {
+    header_title: { type: String }, // Không bắt buộc
+    header_description: { type: String }, // Không bắt buộc
+    slider_title: { type: String }, // Không bắt buộc
+    slider_description: { type: String }, // Không bắt buộc
+    images: { type: [imageSchema], default: [] } // Không bắt buộc
+  },
   GioiThieu: {
-    Ten: { type: String, required: true },
-    MoTa: { type: String, required: true }
+    title: { type: String }, // Không bắt buộc
+    slogan: { type: String }, // Không bắt buộc
+    description: { type: String }, // Không bắt buộc
+    images: { type: [String], default: [] } // Không bắt buộc
   },
-  HoatDong: {
-    CacLinhVucDaoTao: { type: [linhVucSchema], required: true },
-    TongKet: { type: String, required: true }
-  },
-  MoiTruong: { type: String, required: true },
   CoVan: {
-    CoVan1: { type: String, required: true },
-    CoVan2: { type: String, required: true }
+    title: { type: String }, // Không bắt buộc
+    description: { type: String }, // Không bắt buộc
+    data: { type: [advisorSchema], default: [] } // Không bắt buộc
   },
-  ThongTinVeBanChuNhiem: {
-    CacBan: { type: [banChuNhiemSchema], required: true }
+  BanDieuHanh: {
+    title: { type: String }, // Không bắt buộc
+    data: { type: [managementBoardSchema], default: [] } // Không bắt buộc
   },
   TeamDuAn: {
-    CacTeam: { type: [teamDuAnSchema], required: true },
-    LuuY: { type: String, required: true }
+    title: { type: String }, // Không bắt buộc
+    data: { type: [teamProjectSchema], default: [] } // Không bắt buộc
   },
-  QA: { type: [qaSchema], required: true },
-  MoTaChiTietTungKhoa: {
-    WebApp: { type: [khoaSchema], required: true },
-    Game: { type: [khoaSchema], required: true },
-    Data: { type: [khoaSchema], required: true }
+  FAQ: {
+    title: { type: String }, // Không bắt buộc
+    description: { type: String }, // Không bắt buộc
+    data: { type: [faqSchema], default: [] } // Không bắt buộc
+  },
+  DaoTaoSlider: {
+    title: { type: String }, // Không bắt buộc
+    description: { type: String }, // Không bắt buộc
+    img: { type: String } // Không bắt buộc
+  },
+  ChuongTrinhDaoTao: {
+    title: { type: String }, // Không bắt buộc
+    data: { type: [programSchema], default: [] } // Không bắt buộc
+  },
+  HoatDongSlider: {
+    title: { type: String }, // Không bắt buộc
+    description: { type: String }, // Không bắt buộc
+    image: { type: String }, // Không bắt buộc
+    data: { type: [activitySchema], default: [] } // Không bắt buộc
+  },
+  CacHoatDongKhac: {
+    title: { type: String }, // Không bắt buộc
+    events: [
+      {
+        img: { type: String }, // Không bắt buộc
+        title: { type: String } // Không bắt buộc
+      }
+    ]
+  },
+  Gallery: { // Thêm phần Gallery
+    title: { type: String }, // Không bắt buộc
+    data: [
+      {
+        title: { type: String }, // Không bắt buộc
+        description: { type: String }, // Không bắt buộc
+        image: { type: String } // Không bắt buộc
+      }
+    ]
   }
 });
 
-// Xuất mô hình để sử dụng trong các file khác
 module.exports = mongoose.model('IUCClub', iucClubSchema);

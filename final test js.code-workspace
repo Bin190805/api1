@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "../../Downloads/final test js"
+		},
+		{
+			"path": "../../Downloads/NewsWebsite-main/NewsWebsite-main"
+		},
+		{
+			"path": "../../Downloads/NewsWebsite-main/cuối kì js"
+		},
+		{
+			"path": "../../Downloads/cuối kì js-20240611T163143Z-001/cuối kì js"
+		},
+		{
+			"path": "../api2"
+		},
+		{
+			"path": "../api3"
+		},
+		{
+			"path": "../api4"
+		},
+		{
+			"path": "../app"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "cuối kì js"
+	}
+}
